@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "newsitedb",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\Users\\Payton\\new-site\\amplify\\backend\\api\\newsitedb\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}
