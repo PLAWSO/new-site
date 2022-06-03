@@ -1,4 +1,4 @@
-//import classes from './Post.module.css';
+import classes from './Post.module.css';
 import { useContext } from 'react';
 import AllPostsContext from '../../store/all-posts-context';
 

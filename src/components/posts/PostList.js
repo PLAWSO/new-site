@@ -1,5 +1,5 @@
 import PostItem from './Post';
-//import classes from './PostList.module.css'
+import classes from './PostList.module.css'
 import AllPostsContext from '../../store/all-posts-context';
 import { useContext } from 'react';
 

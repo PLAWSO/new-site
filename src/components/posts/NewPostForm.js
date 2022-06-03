@@ -1,6 +1,6 @@
 import {useRef} from 'react';
 import Card from '../ui/Card';
-//import classes from './NewPostForm.module.css'
+import classes from './NewPostForm.module.css'
 
 function NewPostForm(props) {
   const usernameInputRef = useRef()

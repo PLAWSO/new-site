@@ -5,7 +5,6 @@ import {listPosts} from '../graphql/queries'
 import './AllPosts.module.css'
 import  '../store/all-posts-context';
 import AllPostsContext from '../store/all-posts-context';
-import '../webpack.config.js'
 
 function AllPostsPage() {
   const AllPostsCtx = useContext(AllPostsContext)
