@@ -1,24 +1,31 @@
-import logo from "./logo.svg";
-import "@aws-amplify/ui-react/styles.css";
-import {
-  withAuthenticator,
-  Button,
-  Heading,
-  Image,
-  View,
-  Card,
-} from "@aws-amplify/ui-react";
+import Amplify from 'aws-amplify';
+import React from 'react';
+import classes from './App.module.css';
 
-function App({ signOut }) {
+import MainNavigation from './components/layout/MainNavigation';
+import {Route, Routes} from 'react-router-dom';
+
+import AllPostsPage from './pages/AllPosts'
+import NewPostPage from './pages/NewPost'
+import TopPostsPage from './pages/TopPosts'
+
+import config from './aws-exports';
+
+Amplify.configure(config)
+
+function App() {
   return (
-    <View className="App">
-      <Card>
-        <Image src={logo} className="App-logo" alt="logo" />
-        <Heading level={1}>We now have Auth!</Heading>
-      </Card>
-      <Button onClick={signOut}>Sign Out</Button>
-    </View>
+    <div>
+      <MainNavigation />
+      <div className={classes.content}>
+        <Routes>
+          <Route path="/" element={<AllPostsPage />} />
+          <Route path="/new-post" element={<NewPostPage />} />
+          <Route path="/top-posts" element={<TopPostsPage />} />
+        </Routes>
+      </div>
+    </div>
   );
 }
 
-export default withAuthenticator(App);
+export default App;
