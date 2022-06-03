@@ -24,6 +24,10 @@ export function AllPostsContextProvider(props) {
     })
   }
   
+  function getPosts() {
+    return posts
+  }
+  
   function setIsLoadingHandler(isLoading) {
     setIsLoading(isLoading)
   }
@@ -32,9 +36,7 @@ export function AllPostsContextProvider(props) {
     return posts.find(post => post.id === postId)
   }
 
-  function getPosts() {
-    return posts
-  }
+
 
   async function addLikeHandler(postId) {
     const post = getPostById(postId)
