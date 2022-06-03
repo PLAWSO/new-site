@@ -1,4 +1,6 @@
+import { API } from "aws-amplify";
 import { createContext, useState } from "react";
+import * as mutations from '../graphql/mutations'
 
 // context is js object
 const AllPostsContext = createContext({
@@ -15,9 +17,10 @@ export function AllPostsContextProvider(props) {
   const [isLoading, setIsLoading] = useState(true)
 
   function initializePostsHandler(posts) {
-    //console.log(posts)
     setAllPosts(() => {
-      return posts
+      return posts.sort((a, b) => {
+        return ('' + b.createdAt).localeCompare(a.createdAt)
+      })
     })
   }
   
@@ -25,17 +28,37 @@ export function AllPostsContextProvider(props) {
     setIsLoading(isLoading)
   }
 
-  function postsHandler() {
-    return posts
+  function getPostById(postId) {
+    return posts.find(post => post.id === postId)
   }
 
   function getPosts() {
     return posts
   }
 
-  function addLikeHandler(props) {
-    console.log(props)
-    console.log('finish addLikeHandler!')
+  async function addLikeHandler(postId) {
+    const post = getPostById(postId)
+    delete post.updatedAt
+    delete post.createdAt
+    post.likes++
+    console.log(post.likes)
+    const updatedPost = await API.graphql({query: mutations.updatePost, variables: {input: getPostById(postId)}}).catch((error) => console.log(error))
+    let newPosts = posts
+    console.log(updatedPost.data.updatePost)
+    newPosts = newPosts.map(post => {
+      if (post.id === postId){
+        console.log('found')
+        return updatedPost.data.updatePost
+      }
+      else
+        return post
+    })
+    console.log('')
+    setAllPosts(() => {
+      return newPosts.sort((a, b) => {
+        return ('' + b.createdAt).localeCompare(a.createdAt)
+      })
+    })
   }
 
   function getLikesHandler() {
