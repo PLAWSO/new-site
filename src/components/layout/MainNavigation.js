@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import classes from './MainNavigation.module.css'
+//import SaveIcon from '@material-ui/icons/Save'
 
 function MainNavigation() {
   return (
@@ -13,7 +14,7 @@ function MainNavigation() {
           <Link to='/new-post'>Add New Post</Link>
         </li>
         <li>
-          <Link to='/top-posts'>Top Psts</Link>
+          <Link to='/top-posts'>Top Posts</Link>
         </li>
       </ul>
     </nav>
