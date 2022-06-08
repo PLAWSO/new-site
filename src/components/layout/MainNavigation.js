@@ -1,10 +1,11 @@
 import {Link} from 'react-router-dom';
 import classes from './MainNavigation.module.css'
+import StickyBox from "react-sticky-box"
 //import SaveIcon from '@material-ui/icons/Save'
 
 function MainNavigation() {
   return (
-  <header className={classes.header}>
+  <StickyBox className={classes.header}>
     <nav>
       <ul>
         <li>
@@ -18,7 +19,7 @@ function MainNavigation() {
         </li>
       </ul>
     </nav>
-  </header>
+  </StickyBox>
   );
 }
 

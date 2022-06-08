@@ -19,9 +19,10 @@ function PostItem(props) {
         <p>{props.body}</p>
       </div>
       <div className={classes.footer}>
-        <button className='like' mylocalid = {props.id} onClick={addLikeHandler}>Like</button>
-        <h1>{props.likes}</h1>
+        <button className={classes.likeButton} onClick={addLikeHandler}>Like</button>
+        <p className={classes.likeCounter}>{props.likes}</p>
       </div>
+      <div className={classes.clearFix}></div>
     </li>
   );
 }

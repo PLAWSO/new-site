@@ -1,0 +1,25 @@
+.item {
+  list-style: none;
+}
+
+.likeButton {
+  background: red;
+  float: left;
+  width:30%;
+  box-sizing: border-box;
+}
+
+.likeButton:hover {
+  background: darkred;
+}
+
+.likeCounter {
+  float: right;
+  width:70%;
+  box-sizing: border-box;
+  background-color: blue;
+}
+
+.clearFix {
+  clear: both;
+}

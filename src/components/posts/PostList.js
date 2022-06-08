@@ -14,7 +14,7 @@ function PostList(props) {
   return (
     <ul className={classes.list}>
       {AllPostsCtx.getPosts().map(post => 
-        <PostItem
+        <PostItem class={classes.postItem}
           key={post.id}
           id={post.id}
           author={post.author}
