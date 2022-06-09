@@ -12,20 +12,22 @@ function PostList(props) {
   }
 
   return (
-    <ul className={classes.list}>
-      {AllPostsCtx.getPosts().map(post => 
-        <PostItem class={classes.postItem}
-          key={post.id}
-          id={post.id}
-          author={post.author}
-          body={post.body}
-          isEdited={post.isEdited}
-          likes={post.likes}
-          createdAt={post.createdAt}
-          addLike={addLikeHandler}
-        />
-      )}
-    </ul>
+    <div className={classes.list}>
+      <ul className = {classes.contentWindow}>
+        {AllPostsCtx.getPosts().map(post => 
+          <PostItem
+            key={post.id}
+            id={post.id}
+            author={post.author}
+            body={post.body}
+            isEdited={post.isEdited}
+            likes={post.likes}
+            createdAt={post.createdAt}
+            addLike={addLikeHandler}
+          />
+        )}
+      </ul>
+    </div>
   );
 }
 

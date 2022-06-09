@@ -6,6 +6,7 @@
   background-color: aquamarine;
   position: sticky;
   position: -webkit-sticky;
+  z-index: 100;
 }
 
 .header ul {

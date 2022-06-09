@@ -1,4 +1,36 @@
-.postItem {
-  border: 1px solid red;
-  max-width: 500px;
+.list {
+  margin: auto;
+  padding: 0;
+  width:100%;
 }
+
+.contentWindow {
+  margin: auto;
+  padding: 0;
+  display:grid;
+  justify-items: center;
+}
+
+@media only screen and (max-width: 100000px) {
+  .contentWindow {
+    width: 1200px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .contentWindow {
+    width: 800px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .contentWindow {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+

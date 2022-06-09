@@ -2,7 +2,7 @@ import {useContext,useState, useEffect} from 'react';
 import PostList from '../components/posts/PostList';
 import {API, graphqlOperation} from 'aws-amplify';
 import {listPosts} from '../graphql/queries'
-import './AllPosts.module.css'
+import classes from './AllPosts.module.css'
 import  '../store/all-posts-context';
 import AllPostsContext from '../store/all-posts-context';
 
@@ -34,8 +34,7 @@ function AllPostsPage() {
     )
   } else {
     return (
-      <section>
-        <h1>All Posts</h1>
+      <section className={classes.section}>
         <PostList /> 
       </section>
     );   
