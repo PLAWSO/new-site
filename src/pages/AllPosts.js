@@ -1,8 +1,8 @@
-import {useContext,useState, useEffect} from 'react';
+import {useContext, useEffect} from 'react';
 import PostList from '../components/posts/PostList';
 import {API, graphqlOperation} from 'aws-amplify';
-import {listPosts} from '../graphql/queries'
-import classes from './AllPosts.module.css'
+import {listPosts} from '../graphql/queries';
+import classes from './AllPosts.module.css';
 import  '../store/all-posts-context';
 import AllPostsContext from '../store/all-posts-context';
 
@@ -11,33 +11,36 @@ function AllPostsPage() {
 
   useEffect(() => {
     fetchPosts()
+    .then(() => {
+      AllPostsCtx.setIsLoading(false)
+    })
+    .catch(e => {
+      console.error(e)
+    })
   }, [])
 
-  const fetchPosts = async () => {
-    try {
-      //console.log(postList)
-      const postData = await API.graphql(graphqlOperation(listPosts))
-      const postList = postData.data.listPosts.items
-      AllPostsCtx.initializePosts(postList)
-      AllPostsCtx.setIsLoading(false)
-    } catch (error) {
-      console.log('error fetching posts', error)
-    }
+  async function fetchPosts() {
+    const postData = await API.graphql(graphqlOperation(listPosts))
+ 
+    const postList = postData.data.listPosts.items.sort((a, b) => {
+      return ('' + b.createdAt).localeCompare(a.createdAt)
+    })
+    AllPostsCtx.initializePosts(postList)
   }
 
-  //console.log(AllPostsCtx.posts)
-  if (AllPostsContext.isLoading) {
+  if (AllPostsCtx.getIsLoading()) {
     return (
       <section>
-        <h1>Loading...</h1>
+        <h1 className={classes.loading}>Loading...</h1>
       </section>
     )
-  } else {
+  } 
+  else {
     return (
       <section className={classes.section}>
-        <PostList /> 
+        <PostList postList={AllPostsCtx.getPosts()}/> 
       </section>
-    );   
+    )
   }  
 }
 

@@ -2,29 +2,23 @@ import { API } from "aws-amplify";
 import { createContext, useState } from "react";
 import * as mutations from '../graphql/mutations'
 
-// context is js object
 const AllPostsContext = createContext({
   posts: [],
   isLoading: true,
   addLike: (postId) => {},
-  getLikes: (postId) => {},
+  getIsLoading: () => {},
   initializePosts: (posts) => {}
 })
 
-// reg react component, provides context to all components that listen, updates context
 export function AllPostsContextProvider(props) {
   const [posts, setAllPosts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   function initializePostsHandler(posts) {
-    setAllPosts(() => {
-      return posts.sort((a, b) => {
-        return ('' + b.createdAt).localeCompare(a.createdAt)
-      })
-    })
+    setAllPosts(() => {return (posts)})
   }
-  
-  function getPosts() {
+
+  function getPostsHandler() {
     return posts
   }
   
@@ -32,6 +26,10 @@ export function AllPostsContextProvider(props) {
     setIsLoading(isLoading)
   }
 
+  function getIsLoadingHandler() {
+    return isLoading
+  }
+  
   function getPostById(postId) {
     return posts.find(post => post.id === postId)
   }
@@ -48,10 +46,8 @@ export function AllPostsContextProvider(props) {
     let newPosts = posts
 
     newPosts = newPosts.map(post => {
-      if (post.id === postId){
-
+      if (post.id === postId)
         return updatedPost.data.updatePost
-      }
       else
         return post
     })
@@ -60,18 +56,16 @@ export function AllPostsContextProvider(props) {
         return ('' + b.createdAt).localeCompare(a.createdAt)
       })
     })
-  }
+    
 
-  function getLikesHandler() {
-    console.log('finish getLikesHandler!')
   }
 
   const context = {
      addLike: addLikeHandler,
-     getLikes: getLikesHandler,
+     getIsLoading: getIsLoadingHandler,
      initializePosts: initializePostsHandler,
      setIsLoading: setIsLoadingHandler,
-     getPosts: getPosts
+     getPosts: getPostsHandler
   }
 
   return (

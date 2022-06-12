@@ -1,0 +1,27 @@
+.form {
+  margin-top: 20%;
+  width: 100%;
+  text-align: center;
+}
+
+.form h1 {
+  justify-self: center;
+}
+
+.form input {
+  border-top: none;
+  border-left: none;
+  border-right: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+  outline: none;
+  width: 725px;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  .form input {
+    width: 80%;
+  }
+}

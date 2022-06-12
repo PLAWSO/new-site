@@ -2,8 +2,9 @@ import {useNavigate} from 'react-router-dom'
 import NewPostForm from "../components/posts/NewPostForm";
 import {createPost} from '../graphql/mutations'
 import {API, graphqlOperation} from 'aws-amplify';
+import classes from './NewPost.module.css';
 
-function NewPostPage() {
+function NewPostPage(props) {
   const navigate = useNavigate()
   
   const addPostHandler = async postData => {
@@ -15,10 +16,7 @@ function NewPostPage() {
 
 
   return (
-    <section>
-      <h1>Add New Post</h1>
-      <NewPostForm onAddPost={addPostHandler}/>
-    </section>
+    <NewPostForm username={props.username} onAddPost={addPostHandler}/>
   )
 }
 
